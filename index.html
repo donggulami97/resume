@@ -5,136 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>杨聪灵 - 个人官方主页</title>
     <style>
-        :root {
-            --nav-bg: #1a2a3a;
-            --sidebar-width: 240px;
-            --accent-blue: #3498db;
-            --text-main: #2c3e50;
-            --bg-light: #f8fafc;
-        }
-
+        :root { --nav-bg: #1a2a3a; --sidebar-width: 240px; --accent-blue: #3498db; --text-main: #2c3e50; --bg-light: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
         body { background: var(--bg-light); display: flex; min-height: 100vh; color: var(--text-main); }
-
-        /* 左侧导航栏 */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: var(--nav-bg);
-            color: white;
-            position: fixed;
-            height: 100%;
-            padding: 30px 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .profile-zone {
-            padding: 0 20px 30px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
+        .sidebar { width: var(--sidebar-width); background: var(--nav-bg); color: white; position: fixed; height: 100%; padding: 30px 0; display: flex; flex-direction: column; }
+        .profile-zone { padding: 0 20px 30px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 15px; }
         .profile-zone h1 { font-size: 24px; margin-bottom: 5px; }
         .profile-zone p { font-size: 13px; color: #94a3b8; }
-
         .nav-menu { margin-top: 20px; list-style: none; }
-        .nav-item {
-            padding: 15px 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
-            font-size: 15px;
-            color: #cbd5e1;
-        }
+        .nav-item { padding: 15px 25px; cursor: pointer; transition: all 0.3s; border-left: 4px solid transparent; font-size: 15px; color: #cbd5e1; }
         .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
-        .nav-item.active {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--accent-blue);
-            border-left-color: var(--accent-blue);
-            font-weight: 600;
-        }
-
-        /* 右侧内容区 */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 50px 80px;
-        }
-
+        .nav-item.active { background: rgba(52, 152, 219, 0.1); color: var(--accent-blue); border-left-color: var(--accent-blue); font-weight: 600; }
+        .main-content { margin-left: var(--sidebar-width); flex: 1; padding: 50px 80px; }
         .tab-content { display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h2.section-header {
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: var(--nav-bg);
-            display: flex;
-            align-items: center;
-        }
-        h2.section-header::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #e2e8f0;
-            margin-left: 20px;
-        }
-
-        /* 卡片样式 */
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-        }
-
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2.section-header { font-size: 28px; margin-bottom: 30px; color: var(--nav-bg); display: flex; align-items: center; }
+        h2.section-header::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; margin-left: 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 25px; }
         .item-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
         .item-title { font-size: 18px; font-weight: 700; color: #1e293b; }
         .item-tag { font-size: 14px; color: var(--accent-blue); font-weight: 500; }
         .item-date { font-size: 13px; color: #94a3b8; }
-
         .detail-list { list-style: none; }
-        .detail-list li {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-            font-size: 15px;
-            line-height: 1.7;
-            color: #475569;
-        }
-        .detail-list li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 20px 0; }
-            .main-content { margin-left: 0; padding: 30px 20px; }
-            .nav-menu { display: flex; overflow-x: auto; white-space: nowrap; }
-            .nav-item { padding: 10px 20px; border-left: none; border-bottom: 2px solid transparent; }
-            .nav-item.active { border-bottom-color: var(--accent-blue); }
-        }
+        .detail-list li { margin-bottom: 12px; padding-left: 20px; position: relative; font-size: 15px; line-height: 1.7; color: #475569; }
+        .detail-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent-blue); }
+        .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        @media (max-width: 768px) { body { flex-direction: column; } .sidebar { width: 100%; height: auto; position: relative; padding: 20px 0; } .main-content { margin-left: 0; padding: 30px 20px; } .nav-menu { display: flex; overflow-x: auto; white-space: nowrap; } .nav-item { padding: 10px 20px; border-left: none; border-bottom: 2px solid transparent; } .nav-item.active { border-bottom-color: var(--accent-blue); } }
     </style>
 </head>
 <body>
-
     <nav class="sidebar">
         <div class="profile-zone">
+            <img src="https://files.mdnice.com/user/62362/779b5c32-e092-491c-8e0b-22d7159c3a07.png" class="avatar" alt="头像">
             <h1>杨聪灵</h1>
             <p>薪酬绩效专家 / ISTJ</p>
         </div>
@@ -145,7 +49,6 @@
             <li class="nav-item" onclick="openTab(event, 'skills')">专业优势</li>
         </ul>
     </nav>
-
     <main class="main-content">
         <div id="basic" class="tab-content active">
             <h2 class="section-header">基本信息</h2>
@@ -154,102 +57,31 @@
                     <div><strong>联系电话：</strong>15027832571</div>
                     <div><strong>电子邮箱：</strong>2396908417@qq.com</div>
                     <div><strong>出生年月：</strong>2000.10.30</div>
-                    <div><strong>最高学历：</strong>中国传媒大学 (信管专业)</div>
+                    <div><strong>最高学历：</strong>中国传媒大学</div>
                 </div>
-            </div>
-            <div class="card">
-                <h3 style="margin-bottom:15px">教育背景</h3>
-                <div class="item-header">
-                    <span class="item-title">中国传媒大学</span>
-                    <span class="item-date">2018.9 - 2022.6</span>
-                </div>
-                <p style="color: #64748b;">信息管理与信息系统专业 | 学士学位</p>
             </div>
         </div>
-
         <div id="work" class="tab-content">
             <h2 class="section-header">职业生涯</h2>
             <div class="card">
                 <div class="item-header">
-                    <div>
-                        <span class="item-title">毕马威 (KPMG)</span><br>
-                        <span class="item-tag">Performance and Development</span>
-                    </div>
+                    <div><span class="item-title">毕马威 (KPMG)</span><br><span class="item-tag">Performance and Development</span></div>
                     <span class="item-date">2024.11 - 至今</span>
                 </div>
-                <ul class="detail-list">
-                    <li>负责绩效数据分析、目标管理及中期审视全流程运营。</li>
-                    <li>诊断方案问题并落地改进建议，优化组织绩效闭环。</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="item-header">
-                    <div>
-                        <span class="item-title">理想汽车 (Li Auto)</span><br>
-                        <span class="item-tag">绩效专员</span>
-                    </div>
-                    <span class="item-date">2022.7 - 2024.11</span>
-                </div>
-                <ul class="detail-list">
-                    <li><strong>制度设计：</strong>融合 OKR 与 PBC 理念，支持新绩效方案落地。</li>
-                    <li><strong>数据驱动：</strong>搭建绩效运营及高绩效画像模型，快速定位业务痛点。</li>
-                    <li><strong>系统赋能：</strong>独立负责绩效系统建设，大幅减少 HRBP 运营成本。</li>
-                </ul>
+                <ul class="detail-list"><li>主要负责绩效数据分析以及绩效目标管理等环节的运营。</li></ul>
             </div>
         </div>
-
-        <div id="project" class="tab-content">
-            <h2 class="section-header">重点项目</h2>
-            <div class="card">
-                <div class="item-header">
-                    <span class="item-title">绩效体系升级变革项目</span>
-                    <span class="item-tag">运营助理</span>
-                </div>
-                <ul class="detail-list">
-                    <li>支撑全产品线均衡发展的业务变革，实现全员工具切换。</li>
-                    <li>通过数据分析复盘解决落地痛点，绩效机制认同度达 90% 以上。</li>
-                </ul>
-            </div>
-            <div class="card">
-                <div class="item-header">
-                    <span class="item-title">高潜人才盘点项目</span>
-                    <span class="item-tag">运营助理</span>
-                </div>
-                <ul class="detail-list">
-                    <li>设计差异化评价标准，协助管理者识别后备梯队。</li>
-                    <li>自研定制化人才盘点系统，为公司节省百万级采购成本。</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="skills" class="tab-content">
-            <h2 class="section-header">专业优势</h2>
-            <div class="card">
-                <h3 style="margin-bottom:15px; color: var(--accent-blue);">数据分析</h3>
-                <p>具备极高的数据敏感度，能独立处理万级绩效数据。熟练操作 Excel 建模及 Tableau 视觉化分析。</p>
-            </div>
-            <div class="card">
-                <h3 style="margin-bottom:15px; color: var(--accent-blue);">沟通协调</h3>
-                <p>具备跨部门推动大型数据治理项目的经验，目标导向强，擅长在复杂组织中聚焦核心问题。</p>
-            </div>
-        </div>
+        <div id="project" class="tab-content"><h2 class="section-header">重点项目</h2><div class="card"><p>项目内容加载中...</p></div></div>
+        <div id="skills" class="tab-content"><h2 class="section-header">专业优势</h2><div class="card"><p>技能模块加载中...</p></div></div>
     </main>
-
     <script>
         function openTab(evt, tabName) {
             var i, tabcontent, navitems;
             tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
             navitems = document.getElementsByClassName("nav-item");
-            for (i = 0; i < navitems.length; i++) {
-                navitems[i].classList.remove("active");
-            }
+            for (i = 0; i < navitems.length; i++) { navitems[i].classList.remove("active"); }
             document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
     </script>
