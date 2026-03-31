@@ -3,157 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>杨聪灵 - 个人官方主页</title>
+    <title>杨聪灵 - 薪酬绩效专家</title>
     <style>
-        :root { --nav-bg: #1a2a3a; --sidebar-width: 240px; --accent-blue: #3498db; --text-main: #2c3e50; --bg-light: #f8fafc; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', 'Microsoft YaHei', sans-serif; }
-        body { background: var(--bg-light); display: flex; min-height: 100vh; color: var(--text-main); }
-        .sidebar { width: var(--sidebar-width); background: var(--nav-bg); color: white; position: fixed; height: 100%; padding: 30px 0; display: flex; flex-direction: column; }
-        .profile-zone { padding: 0 20px 30px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 15px; background-color: #fff; }
-        .profile-zone h1 { font-size: 24px; margin-bottom: 5px; }
-        .profile-zone p { font-size: 13px; color: #94a3b8; }
-        .nav-menu { margin-top: 20px; list-style: none; }
-        .nav-item { padding: 15px 25px; cursor: pointer; transition: all 0.3s; border-left: 4px solid transparent; font-size: 15px; color: #cbd5e1; }
-        .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
-        .nav-item.active { background: rgba(52, 152, 219, 0.1); color: var(--accent-blue); border-left-color: var(--accent-blue); font-weight: 600; }
-        .main-content { margin-left: var(--sidebar-width); flex: 1; padding: 50px 80px; }
-        .tab-content { display: none; animation: fadeIn 0.5s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        h2.section-header { font-size: 28px; margin-bottom: 30px; color: var(--nav-bg); display: flex; align-items: center; }
-        h2.section-header::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; margin-left: 20px; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 25px; }
-        .item-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .item-title { font-size: 18px; font-weight: 700; color: #1e293b; }
-        .item-tag { font-size: 14px; color: var(--accent-blue); font-weight: 500; }
-        .item-date { font-size: 13px; color: #94a3b8; }
-        .detail-list { list-style: none; }
-        .detail-list li { margin-bottom: 12px; padding-left: 20px; position: relative; font-size: 15px; line-height: 1.7; color: #475569; }
-        .detail-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent-blue); }
-        .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        @media (max-width: 768px) { body { flex-direction: column; } .sidebar { width: 100%; height: auto; position: relative; padding: 20px 0; } .main-content { margin-left: 0; padding: 30px 20px; } .nav-menu { display: flex; overflow-x: auto; white-space: nowrap; } .nav-item { padding: 10px 20px; border-left: none; border-bottom: 2px solid transparent; } .nav-item.active { border-bottom-color: var(--accent-blue); } }
+        /* 定义主题变量：提取自参考图 */
+        :root {
+            --bg-color: #F8F6F1;
+            --text-dark: #2D2B3B;
+            --text-gray: #6B6A76;
+            --primary-purple: #855CBA;
+            --primary-purple-hover: #714AA4;
+            --accent-orange: #F2A57A;
+            --accent-yellow: #F1D683;
+            --accent-green: #A3D4B6;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        
+        html { scroll-behavior: smooth; } /* 平滑滚动 */
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+
+        /* 顶部导航栏 */
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(248, 246, 241, 0.9);
+            backdrop-filter: blur(10px); z-index: 1000;
+        }
+        .logo { font-size: 24px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 10px; text-decoration: none;}
+        .logo-icon { width: 24px; height: 24px; background: var(--text-dark); border-radius: 4px; display: inline-block; }
+        
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 15px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-purple); }
+        
+        .nav-btn {
+            background-color: var(--primary-purple); color: var(--white);
+            padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;
+            transition: background 0.3s; font-size: 15px;
+        }
+        .nav-btn:hover { background-color: var(--primary-purple-hover); }
+
+        /* 通用容器与排版 */
+        .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px 40px; }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 40px; color: var(--text-dark); text-align: center; }
+
+        /* 首屏 Hero 区域 */
+        .hero {
+            display: flex; align-items: center; justify-content: space-between;
+            min-height: 100vh; gap: 50px; padding-top: 80px;
+        }
+        .hero-text { flex: 1; max-width: 550px; }
+        .hero-tag { color: #A8A6B3; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 20px; display: inline-block; }
+        .hero-title { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: var(--text-dark); }
+        .hero-desc { font-size: 18px; color: var(--text-gray); margin-bottom: 40px; line-height: 1.8; }
+        
+        .hero-contact { display: flex; gap: 15px; align-items: center; }
+        .hero-contact .info-box { background: var(--white); padding: 15px 20px; border-radius: 8px; border: 1px solid #E5E3DC; flex: 1; font-size: 15px; color: var(--text-gray); }
+        .hero-btn { background: var(--primary-purple); color: var(--white); padding: 16px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .hero-btn:hover { background: var(--primary-purple-hover); }
+
+        /* 右侧图片与悬浮组件 */
+        .hero-image-wrapper { flex: 1; position: relative; display: flex; justify-content: center; }
+        .hero-img-container { background: #EAE6DF; border-radius: 24px; padding: 20px; position: relative; width: 380px; height: 500px; overflow: hidden; display: flex; align-items: flex-end; justify-content: center;}
+        /* 头像放在这里 */
+        .hero-avatar { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+
+        .floating-badge {
+            position: absolute; background: var(--white); padding: 12px 20px; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 14px;
+        }
+        .badge-1 { top: 40px; left: -30px; }
+        .badge-1 .val { font-size: 20px; font-weight: 800; }
+        .badge-1 .lbl { font-size: 12px; color: var(--text-gray); font-weight: 400; }
+        .badge-1 .tag { background: var(--accent-green); color: #1B4D30; padding: 3px 10px; border-radius: 20px; font-size: 11px; width: fit-content; margin-top: 5px;}
+        
+        .badge-2 { top: 120px; right: -40px; background: var(--accent-yellow); color: #5B4800; border-radius: 30px; padding: 10px 20px;}
+        
+        .badge-3 { bottom: 100px; left: -60px; background: var(--primary-purple); color: var(--white); border-radius: 12px; font-size: 16px;}
+        
+        .badge-4 { bottom: 40px; right: -20px; background: var(--accent-orange); color: #5B2B10; display: flex; flex-direction: row; align-items: center; gap: 10px;}
+        .badge-icon { width: 20px; height: 20px; border: 1px solid rgba(0,0,0,0.2); border-radius: 4px; display: grid; place-items: center; font-size: 10px;}
+
+        /* 各个模块样式设计 */
+        section { padding-top: 100px; margin-bottom: 50px; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        .card {
+            background: var(--white); padding: 40px; border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #F0EEE9;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+
+        /* 工作经历样式 */
+        .timeline-item { margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #F0EEE9; }
+        .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .job-title { font-size: 22px; font-weight: 700; color: var(--text-dark); }
+        .job-company { font-size: 16px; color: var(--primary-purple); font-weight: 600; margin-top: 5px; }
+        .job-date { background: #F3F1EC; padding: 5px 12px; border-radius: 20px; font-size: 13px; color: var(--text-gray); font-weight: 500; }
+        .job-desc { list-style: none; }
+        .job-desc li { position: relative; padding-left: 20px; margin-bottom: 12px; color: var(--text-gray); }
+        .job-desc li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-orange); }
+
+        /* 项目经历与专业优势 */
+        .tag-pill { display: inline-block; background: var(--bg-color); color: var(--text-dark); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 15px; border: 1px solid #E5E3DC; }
+        .project-title { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
+        
+        .skills-container { display: flex; flex-direction: column; gap: 20px; }
+        .skill-item h3 { color: var(--primary-purple); font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .skill-item p { color: var(--text-gray); }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero-text { max-width: 100%; }
+            .hero-contact { flex-direction: column; }
+            .floating-badge { transform: scale(0.8); }
+            .badge-1 { left: -10px; } .badge-2 { right: -10px; } .badge-3 { left: -10px; } .badge-4 { right: -10px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* 移动端暂时隐藏中间导航，保持简洁 */
+        }
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <div class="profile-zone">
-            <img src="avatar.png" class="avatar" alt="头像">
-            <h1>杨聪灵</h1>
-            <p>薪酬绩效专家 / ISTJ</p>
-        </div>
-        <ul class="nav-menu">
-            <li class="nav-item active" onclick="openTab(event, 'basic')">基本信息</li>
-            <li class="nav-item" onclick="openTab(event, 'work')">工作经历</li>
-            <li class="nav-item" onclick="openTab(event, 'project')">重点项目</li>
-            <li class="nav-item" onclick="openTab(event, 'skills')">专业优势</li>
+
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-icon"></span> Selnex (杨聪灵)
+        </a>
+        <ul class="nav-links">
+            <li><a href="#basic">基本信息</a></li>
+            <li><a href="#work">工作经历</a></li>
+            <li><a href="#project">重点项目</a></li>
+            <li><a href="#skills">专业优势</a></li>
         </ul>
+        <a href="#basic" class="nav-btn">联系我</a>
     </nav>
-    <main class="main-content">
-        <div id="basic" class="tab-content active">
-            <h2 class="section-header">基本信息</h2>
-            <div class="card">
-                <div class="contact-grid">
-                    <div><strong>联系电话：</strong>15027832571</div>
-                    <div><strong>电子邮箱：</strong>2396908417@qq.com</div>
-                    <div><strong>出生年月：</strong>2000.10.30</div>
-                    <div><strong>最高学历：</strong>中国传媒大学 (信管专业)</div>
-                </div>
-            </div>
-            <div class="card">
-                <h3 style="margin-bottom:15px">教育背景</h3>
-                <div class="item-header">
-                    <span class="item-title">中国传媒大学</span>
-                    <span class="item-date">2018.9 - 2022.6</span>
-                </div>
-                <p style="color: #64748b;">信息管理与信息系统专业 | 学士学位</p>
-            </div>
-        </div>
 
-        <div id="work" class="tab-content">
-            <h2 class="section-header">职业生涯</h2>
-            <div class="card">
-                <div class="item-header">
-                    <div>
-                        <span class="item-title">毕马威 (KPMG)</span><br>
-                        <span class="item-tag">Performance and Development</span>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-text">
+                <span class="hero-tag">Compensation & Performance</span>
+                <h1 class="hero-title">数据驱动效能。<br>重塑组织活力。</h1>
+                <p class="hero-desc">拥有多年知名企业薪酬绩效运营与制度设计经验，致力于打造高效的人才评估与发展体系，从处理复杂数据到推动制度变革，助力组织战略平稳落地。</p>
+                <div class="hero-contact">
+                    <div class="info-box">2396908417@qq.com</div>
+                    <a href="#work" class="hero-btn">查看经历</a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="hero-img-container">
+                    <img src="avatar.png" alt="杨聪灵头像" class="hero-avatar">
+                </div>
+                
+                <div class="floating-badge badge-1">
+                    <span class="val">90%+</span>
+                    <span class="lbl">绩效机制认同度</span>
+                    <span class="tag">落地成功</span>
+                </div>
+                
+                <div class="floating-badge badge-2">
+                    Status<br><strong>MBTI: ISTJ</strong>
+                </div>
+                
+                <div class="floating-badge badge-3">
+                    精通绩效体系升级
+                </div>
+                
+                <div class="floating-badge badge-4">
+                    <span class="badge-icon">📊</span>
+                    <span>处理万级数据分析</span>
+                </div>
+            </div>
+        </header>
+
+        <section id="basic">
+            <h2 class="section-title">基本信息</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <span class="tag-pill">Contact Info</span>
+                    <div style="display: grid; gap: 15px;">
+                        <p><strong>姓名：</strong>杨聪灵</p>
+                        <p><strong>电话：</strong>15027832571</p>
+                        <p><strong>邮箱：</strong>2396908417@qq.com</p>
+                        <p><strong>出生年月：</strong>2000.10.30</p>
                     </div>
-                    <span class="item-date">2024.11 - 至今</span>
                 </div>
-                <ul class="detail-list">
-                    <li>主要负责绩效数据分析以及绩效目标管理、中期审视、绩效评价、绩效反馈等环节的运营,诊断方案问题并落地改进建议。</li>
-                </ul>
+                <div class="card" style="background: var(--primary-purple); color: var(--white);">
+                    <span class="tag-pill" style="border:none;">Education</span>
+                    <h3 style="font-size: 24px; margin-top: 10px;">中国传媒大学</h3>
+                    <p style="opacity: 0.9; margin: 10px 0;">信息管理与信息系统专业</p>
+                    <p style="font-weight: 600;">2018.9 - 2022.6</p>
+                </div>
             </div>
+        </section>
 
+        <section id="work">
+            <h2 class="section-title">工作经历</h2>
             <div class="card">
-                <div class="item-header">
-                    <div>
-                        <span class="item-title">理想汽车 (Li Auto)</span><br>
-                        <span class="item-tag">绩效专员</span>
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">毕马威 (KPMG)</h3>
+                            <p class="job-company">Performance and development</p>
+                        </div>
+                        <span class="job-date">2024.11 - 至今</span>
                     </div>
-                    <span class="item-date">2022.7 - 2024.11</span>
+                    <ul class="job-desc">
+                        <li>主要负责绩效数据分析以及绩效目标管理、中期审视、绩效评价、绩效反馈等环节的运营,诊断方案问题并落地改进建议。</li>
+                    </ul>
                 </div>
-                <ul class="detail-list">
-                    <li><strong>绩效管理制度感知：</strong>通过外部访谈、行业实践对标等研究其他知名企业的绩效管理制度,为现有绩效制度提供了有价值的参考建议。</li>
-                    <li><strong>绩效制度设计与迭代：</strong>参与绩效变革项目,协助诊断现有体系痛点,融合OKR与PBC理念,支持新方案落地并独立运营绩效闭环。</li>
-                    <li><strong>绩效数据分析：</strong>搭建绩效运营数据分析模型,快速定位业务端问题;搭建高绩效画像模型,识别高绩效人员并为招聘提供输入。</li>
-                    <li><strong>绩效系统建设：</strong>独立负责绩效系统建设与优化,为不同群体差异化绩效评价提供系统解决方案,大幅提升绩效管理效率。</li>
-                </ul>
-            </div>
-        </div>
 
-        <div id="project" class="tab-content">
-            <h2 class="section-header">重点项目</h2>
-            <div class="card">
-                <div class="item-header">
-                    <span class="item-title">绩效体系升级变革项目</span>
-                    <span class="item-tag">运营助理 (理想汽车)</span>
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">理想汽车 (Li Auto)</h3>
+                            <p class="job-company">绩效专员</p>
+                        </div>
+                        <span class="job-date">2022.7 - 2024.11</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li><strong>绩效管理制度感知：</strong>通过外部访谈、行业实践对标等研究其他知名企业的绩效管理制度,为现有制度提供参考建议。</li>
+                        <li><strong>绩效制度设计与迭代：</strong>参与绩效变革项目,融合OKR与PBC理念,支持新方案设计与落地并独立运营绩效闭环。</li>
+                        <li><strong>绩效数据分析：</strong>搭建绩效运营数据分析模型,快速定位业务问题;搭建高绩效画像模型,为招聘提供输入。</li>
+                        <li><strong>绩效系统建设：</strong>独立负责绩效系统建设与优化,为校招、销售等不同群体提供差异化系统解决方案,提升管理效率。</li>
+                    </ul>
                 </div>
-                <ul class="detail-list">
-                    <li><strong>项目背景：</strong>公司业务复杂化,原有的绩效体系已不适用于多产品线均衡发展的业务,需支撑公司战略落地。</li>
-                    <li><strong>项目成果：</strong>参与标杆企业调研并提供有效输入；通过数据分析复盘识别落地痛点并推进解决。最终实现全员工具切换,绩效机制认同度达90%以上。</li>
-                </ul>
             </div>
-            <div class="card">
-                <div class="item-header">
-                    <span class="item-title">高潜人才盘点项目</span>
-                    <span class="item-tag">运营助理 (理想汽车)</span>
-                </div>
-                <ul class="detail-list">
-                    <li><strong>项目背景：</strong>企业处于高速发展阶段,需帮助管理者全面掌握团队现状,识别高潜后备人才。</li>
-                    <li><strong>项目成果：</strong>融合员工绩效、能力数据设计差异化的评价标准；独立搭建定制化的人才盘点系统工具,为公司减少百万级成本投入。</li>
-                </ul>
-            </div>
-        </div>
+        </section>
 
-        <div id="skills" class="tab-content">
-            <h2 class="section-header">专业优势</h2>
-            <div class="card">
-                <h3 style="margin-bottom:15px; color: var(--accent-blue);">数据分析</h3>
-                <p>数据敏感度高,独立处理上万级的绩效数据,熟练使用Excel、Tableau等工具进行数据分析。</p>
+        <section id="project">
+            <h2 class="section-title">重点项目</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <span class="tag-pill" style="background: rgba(242, 165, 122, 0.2); color: #B3511B; border:none;">理想汽车</span>
+                    <h3 class="project-title">绩效体系升级变革项目</h3>
+                    <p style="color: var(--text-gray); margin-bottom: 15px;"><strong>背景：</strong>支撑公司战略落地，解决复杂多产品线业务下原有体系不适用的问题。</p>
+                    <p style="color: var(--text-gray);"><strong>成果：</strong>参与调研并提供有效输入；通过数据分析复盘解决落地痛点。最终实现全员工具切换，绩效机制认同度达90%以上。</p>
+                </div>
+                <div class="card">
+                    <span class="tag-pill" style="background: rgba(163, 212, 182, 0.2); color: #1B4D30; border:none;">理想汽车</span>
+                    <h3 class="project-title">高潜人才盘点项目</h3>
+                    <p style="color: var(--text-gray); margin-bottom: 15px;"><strong>背景：</strong>帮助管理者在企业高速发展期全面掌握团队现状，识别高潜后备人才。</p>
+                    <p style="color: var(--text-gray);"><strong>成果：</strong>融合绩效与能力数据设计差异化评价标准；独立搭建定制化人才盘点系统工具，为公司减少百万级成本投入。</p>
+                </div>
             </div>
-            <div class="card">
-                <h3 style="margin-bottom:15px; color: var(--accent-blue);">沟通协调</h3>
-                <p>曾独立负责绩效数据治理项目,跨部门沟通高效聚焦,目标感强。</p>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">专业优势</h2>
+            <div class="card skills-container">
+                <div class="skill-item">
+                    <h3>💡 数据分析能力</h3>
+                    <p>数据敏感度高，能够独立处理上万级的复杂绩效数据，熟练使用 Excel、Tableau 等专业工具进行深度数据挖掘与可视化分析建模。</p>
+                </div>
+                <hr style="border: 0; border-top: 1px solid #F0EEE9;">
+                <div class="skill-item">
+                    <h3>🤝 沟通与项目协同</h3>
+                    <p>具备极强的目标导向，曾独立负责大型绩效数据治理项目。在跨部门、跨系统的复杂沟通中，能够高效聚焦核心诉求，稳步推进项目落地。</p>
+                </div>
             </div>
-        </div>
-    </main>
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, navitems;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            navitems = document.getElementsByClassName("nav-item");
-            for (i = 0; i < navitems.length; i++) {
-                navitems[i].classList.remove("active");
-            }
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
+        </section>
+    </div>
+
 </body>
 </html>
